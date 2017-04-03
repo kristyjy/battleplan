@@ -1,11 +1,22 @@
 import React from 'react'
-import DuckImage from '../assets/Duck.jpg'
+import { connect } from 'react-redux'
+import InitiativePanel from '../../../components/InitiativePanel'
 import './HomeView.scss'
 
-export const HomeView = () => (
-  <div>
-    
+const mapStateToProps = (state) => ({
+  counter : state.counter
+})
+
+const mapDispatchToProps = {
+}
+
+export const HomeView = (props) => (
+  <div className="home row">
+    <InitiativePanel />
+    <div className="col-md-7">
+    {props.counter}
+    </div>
   </div>
 )
 
-export default HomeView
+export default connect(mapStateToProps, mapDispatchToProps)(HomeView)

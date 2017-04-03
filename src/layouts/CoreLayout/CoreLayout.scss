@@ -1,1 +1,10 @@
+.wrapper {
+  height: 100%;
+}
 
+.main {
+  width: 100%;
+  height: calc(100% - 56px);
+  padding-left: 15px;
+  padding-right: 15px;
+}

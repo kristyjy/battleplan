@@ -17,6 +17,21 @@ export default class Header extends React.Component {
       isOpen: !this.state.isOpen
     });
   }
+  /* Save for future nav items
+  <Collapse isOpen={this.state.isOpen} navbar>
+    <Nav className="ml-auto" navbar>
+      <NavItem>
+        <IndexLink to='/' activeClassName='route--active' className='nav-link'>
+          Home
+        </IndexLink>
+      </NavItem>
+      <NavItem>
+        <Link to='/counter' activeClassName='route--active' className="nav-link">
+          Counter
+        </Link>
+      </NavItem>
+    </Nav>
+  </Collapse>*/
   render() {
     return (
       <Navbar color="faded" light toggleable>
@@ -24,20 +39,6 @@ export default class Header extends React.Component {
         <IndexLink to='/' className='navbar-brand'>
           Battle Plan
         </IndexLink>
-        <Collapse isOpen={this.state.isOpen} navbar>
-          <Nav className="ml-auto" navbar>
-            <NavItem>
-              <IndexLink to='/' activeClassName='route--active' className='nav-link'>
-                Home
-              </IndexLink>
-            </NavItem>
-            <NavItem>
-              <Link to='/counter' activeClassName='route--active' className="nav-link">
-                Counter
-              </Link>
-            </NavItem>
-          </Nav>
-        </Collapse>
       </Navbar>
     );
   }
