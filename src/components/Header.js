@@ -7,7 +7,7 @@ export default class Header extends React.Component {
   render() {
     return (
       <Navbar color="faded" light toggleable>
-        <IndexLink to='/' className='navbar-brand'>
+        <IndexLink to="/" className="navbar-brand">
           Battle Plan
         </IndexLink>
       </Navbar>
