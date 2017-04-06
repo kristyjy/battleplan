@@ -3,22 +3,16 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../actions/battleScreenActions';
 import InitiativePanel from '../components/InitiativePanel';
-//import FuelSavingsForm from '../components/FuelSavingsForm';
-
-/*export const BattleScreen = (props) => {
-  return (
-    <FuelSavingsForm
-      saveFuelSavings={props.actions.saveFuelSavings}
-      calculateFuelSavings={props.actions.calculateFuelSavings}
-      fuelSavings={props.fuelSavings}
-    />
-  );
-};*/
+import MainPanel from './MainPanel';
 
 export const BattleScreen = (props) => {
   return (
-    <div className="battle-screen">
+    <div className="battle-screen row">
       <InitiativePanel
+        combatants={props.combatants}
+        actions={props.actions}
+        />
+      <MainPanel
         combatants={props.combatants}
         actions={props.actions}
         />
