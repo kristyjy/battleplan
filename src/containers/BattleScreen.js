@@ -18,7 +18,10 @@ import InitiativePanel from '../components/InitiativePanel';
 export const BattleScreen = (props) => {
   return (
     <div className="battle-screen">
-      <InitiativePanel combatants={props.combatants} />
+      <InitiativePanel
+        combatants={props.combatants}
+        actions={props.actions}
+        />
     </div>
   );
 };

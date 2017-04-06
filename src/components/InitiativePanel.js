@@ -4,8 +4,12 @@ import { ListGroup, ListGroupItem, Badge, ButtonGroup, Button } from 'reactstrap
 
 class InitiativePanel extends React.Component {
 
-  constructor(props) {
-      super(props);
+  constructor(props, context) {
+    super(props, context);
+  }
+
+  addCombatant(combatant) {
+    this.props.actions.addCombatant(combatant);
   }
 
   renderCombatants(combatants) {
@@ -29,14 +33,15 @@ class InitiativePanel extends React.Component {
         <ListGroup>
           {this.renderCombatants(combatants)}
         </ListGroup>
+        <Button onClick={() => { this.addCombatant({'name':'Kristy','initiative': 24}); }}>Add Combatant</Button>
       </div>
     );
   }
 }
 
 InitiativePanel.propTypes = {
-  combatants     : React.PropTypes.array.isRequired
-  //addCombatant   : React.PropTypes.func.isRequired
+  combatants     : React.PropTypes.array.isRequired,
+  actions   : React.PropTypes.object.isRequired
 };
 
 export default InitiativePanel;

@@ -1,5 +1,11 @@
-//import * as types from '../constants/actionTypes';
+import * as types from '../constants/actionTypes';
 
+export function addCombatant(combatant) {
+  return {
+    type: types.ADD_COMBATANT,
+    combatant
+  };
+}
 // example of a thunk using the redux-thunk middleware
 /*export function saveFuelSavings(settings) {
   return function (dispatch) {
@@ -10,15 +16,5 @@
       dateModified: getFormattedDateTime(),
       settings
     });
-  };
-}
-
-export function calculateFuelSavings(settings, fieldName, value) {
-  return {
-    type: types.CALCULATE_FUEL_SAVINGS,
-    dateModified: getFormattedDateTime(),
-    settings,
-    fieldName,
-    value
   };
 }*/

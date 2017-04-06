@@ -1,4 +1,20 @@
 import * as ActionTypes from '../constants/actionTypes';
+import * as ActionCreators from './battleScreenActions';
+
+describe('Actions', () => {
+
+  it('should create an action to add a combatant', () => {
+    const combatant = {'name':'Kristy'};
+    const actual = ActionCreators.addCombatant(combatant);
+    const expected = {
+      type: ActionTypes.ADD_COMBATANT,
+      combatant
+    };
+
+    expect(actual).toEqual(expected);
+  });
+});
+/*import * as ActionTypes from '../constants/actionTypes';
 import * as ActionCreators from './fuelSavingsActions';
 
 import MockDate from 'mockdate';
@@ -62,3 +78,4 @@ describe('Actions', () => {
     // expect(actual).to.equal(expected); // Fails. Not deeply equal
   });
 });
+*/
