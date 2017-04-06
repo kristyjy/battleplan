@@ -1,6 +1,5 @@
 import React from 'react';
 import { ListGroup, ListGroupItem, Badge, ButtonGroup, Button } from 'reactstrap';
-//import './InitiativePanel.scss'
 
 class InitiativePanel extends React.Component {
 
