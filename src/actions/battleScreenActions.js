@@ -1,8 +1,18 @@
 import * as types from '../constants/actionTypes';
 
+let nextId = 0;
+
 export function addCombatant(combatant) {
+  combatant.id = nextId++;
   return {
     type: types.ADD_COMBATANT,
+    combatant
+  };
+}
+
+export function updateCombatant(combatant) {
+  return {
+    type: types.UPDATE_COMBATANT,
     combatant
   };
 }

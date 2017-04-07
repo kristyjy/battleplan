@@ -1,4 +1,4 @@
-import {ADD_COMBATANT} from '../constants/actionTypes';
+import {ADD_COMBATANT, UPDATE_COMBATANT} from '../constants/actionTypes';
 //import objectAssign from 'object-assign';
 import initialState from './initialState';
 
@@ -26,6 +26,15 @@ export default function battleScreenReducer(state = initialState.battleScreen, a
       return {
         ...state,
         combatants: [...state.combatants, action.combatant]
+      };
+
+    case UPDATE_COMBATANT:
+      return {
+        ...state,
+        combatants: [
+          ...state.combatants.filter(combatant => combatant.id !== action.combatant.id),
+          action.combatant
+        ]
       };
 
     default:

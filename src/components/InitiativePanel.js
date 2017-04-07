@@ -1,10 +1,13 @@
 import React from 'react';
-import { ListGroup, ListGroupItem, Badge, ButtonGroup, Button } from 'reactstrap';
+import { ListGroup, Button } from 'reactstrap';
+import Combatant from './Combatant';
 
 class InitiativePanel extends React.Component {
 
   constructor(props, context) {
     super(props, context);
+
+    this.renderCombatants = this.renderCombatants.bind(this);
   }
 
   addCombatant(combatant) {
@@ -12,16 +15,8 @@ class InitiativePanel extends React.Component {
   }
 
   renderCombatants(combatants) {
-    let i = 0;
     return combatants.map((combatant) =>
-        <ListGroupItem key={i++} className="justify-content-between">
-          <Badge pill>{combatant.initiative}</Badge>
-          {combatant.name}
-          <ButtonGroup size="sm">
-            <Button>KO</Button>
-            <Button>Dead</Button>
-          </ButtonGroup>
-        </ListGroupItem>
+        <Combatant key={combatant.id} combatant={combatant} actions={this.props.actions}/>
     );
   }
 

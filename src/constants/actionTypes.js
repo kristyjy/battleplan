@@ -1,1 +1,2 @@
 export const ADD_COMBATANT = 'ADD_COMBATANT';
+export const UPDATE_COMBATANT = 'UPDATE_COMBATANT';
