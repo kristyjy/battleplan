@@ -23,7 +23,7 @@ class AddCombatantForm extends React.Component {
 
   handleChangeInitiative(e) {
     this.setState({
-      initiative: e.target.value
+      initiative: parseInt(e.target.value)
     });
   }
 
@@ -35,6 +35,7 @@ class AddCombatantForm extends React.Component {
         'name': this.state.combatantName,
         'initiative': combatantInitiative
       });
+      this.props.actions.sortCombatants();
     }
   }
 

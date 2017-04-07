@@ -10,8 +10,8 @@ class InitiativePanel extends React.Component {
     this.renderCombatants = this.renderCombatants.bind(this);
   }
 
-  addCombatant(combatant) {
-    this.props.actions.addCombatant(combatant);
+  sortCombatants() {
+    this.props.actions.sortCombatants();
   }
 
   renderCombatants(combatants) {
@@ -27,7 +27,7 @@ class InitiativePanel extends React.Component {
         <ListGroup>
           {this.renderCombatants(combatants)}
         </ListGroup>
-        <Button onClick={() => { this.addCombatant({'name':'Kristy','initiative': 24}); }}>Add Combatant</Button>
+        <Button onClick={() => { this.sortCombatants(); }}>Sort Combatants</Button>
       </div>
     );
   }

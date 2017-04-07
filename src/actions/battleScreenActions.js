@@ -16,6 +16,19 @@ export function updateCombatant(combatant) {
     combatant
   };
 }
+
+export function sortCombatants() {
+  return {
+    type: types.SORT_COMBATANTS
+  };
+}
+
+export function updateCurrentTurn(newTurn) {
+  return {
+    type: types.UPDATE_CURRENT_TURN,
+    newTurn
+  };
+}
 // example of a thunk using the redux-thunk middleware
 /*export function saveFuelSavings(settings) {
   return function (dispatch) {

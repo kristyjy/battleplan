@@ -15,8 +15,9 @@ class Combatant extends React.Component {
 
   updateInitiative(e) {
     if (e && e.target.value !== "") {
-      const updatedCombatant = {...this.props.combatant, 'initiative': e.target.value};
+      const updatedCombatant = {...this.props.combatant, 'initiative': parseInt(e.target.value)};
       this.props.actions.updateCombatant(updatedCombatant);
+      this.props.actions.sortCombatants();
     }
   }
 

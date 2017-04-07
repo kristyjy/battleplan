@@ -22,7 +22,8 @@ describe('Store', () => {
         {'name':'Izzy', 'initiative': 23},
         {'name':'Nutmeg', 'initiative': 12},
         {'name':'Ea', 'initiative': 3}
-      ]
+      ],
+      currentTurn: 50
     };
 
     expect(actual.battleScreen).toEqual(expected);

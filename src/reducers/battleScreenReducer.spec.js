@@ -4,7 +4,8 @@ import reducer from './battleScreenReducer';
 describe('Reducers::battleScreen', () => {
   const getInitialState = () => {
     return {
-      combatants : []
+      combatants : [],
+      currentTurn: 50
     };
   };
 
@@ -12,7 +13,8 @@ describe('Reducers::battleScreen', () => {
     return {
       combatants : [
         {'name':'Kristy', 'initiative': 2}
-      ]
+      ],
+      currentTurn: 50
     };
   };
 

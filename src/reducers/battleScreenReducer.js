@@ -1,34 +1,18 @@
-import {ADD_COMBATANT, UPDATE_COMBATANT} from '../constants/actionTypes';
+import * as types from '../constants/actionTypes';
 //import objectAssign from 'object-assign';
 import initialState from './initialState';
 
 export default function battleScreenReducer(state = initialState.battleScreen, action) {
 
   switch (action.type) {
-    /*case SAVE_FUEL_SAVINGS:
-      // For this example, just simulating a save by changing date modified.
-      // In a real app using Redux, you might use redux-thunk and handle the async call in fuelSavingsActions.js
-      return objectAssign({}, state, {dateModified: action.dateModified});
 
-    case CALCULATE_FUEL_SAVINGS:
-      newState = objectAssign({}, state);
-      newState[action.fieldName] = action.value;
-      newState.necessaryDataIsProvidedToCalculateSavings = calculator().necessaryDataIsProvidedToCalculateSavings(newState);
-      newState.dateModified = action.dateModified;
-
-      if (newState.necessaryDataIsProvidedToCalculateSavings) {
-        newState.savings = calculator().calculateSavings(newState);
-      }
-
-      return newState;*/
-
-    case ADD_COMBATANT:
+    case types.ADD_COMBATANT:
       return {
         ...state,
         combatants: [...state.combatants, action.combatant]
       };
 
-    case UPDATE_COMBATANT:
+    case types.UPDATE_COMBATANT:
       return {
         ...state,
         combatants: [
@@ -36,6 +20,25 @@ export default function battleScreenReducer(state = initialState.battleScreen, a
           action.combatant
         ]
       };
+
+      case types.SORT_COMBATANTS:
+        return {
+          ...state,
+          combatants: [
+            ...state.combatants.filter(combatant => combatant.initiative <= state.currentTurn).sort((a, b) => {
+              return a.initiative > b.initiative ? -1 : a.initiative < b.initiative ? 1 : 0;
+            }),
+            ...state.combatants.filter(combatant => combatant.initiative > state.currentTurn).sort((a, b) => {
+              return a.initiative > b.initiative ? -1 : a.initiative < b.initiative ? 1 : 0;
+            })
+          ]
+        };
+
+      case types.UPDATE_CURRENT_TURN:
+        return {
+          ...state,
+          currentTurn: action.newTurn
+        };
 
     default:
       return state;
