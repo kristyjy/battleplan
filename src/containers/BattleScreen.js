@@ -10,6 +10,7 @@ export const BattleScreen = (props) => {
     <div className="battle-screen row">
       <InitiativePanel
         combatants={props.combatants}
+        currentTurn={props.currentTurn}
         actions={props.actions}
         />
       <MainPanel
@@ -22,12 +23,14 @@ export const BattleScreen = (props) => {
 
 BattleScreen.propTypes = {
   actions: PropTypes.object.isRequired,
-  combatants: PropTypes.array.isRequired
+  combatants: PropTypes.array.isRequired,
+  currentTurn: PropTypes.number.isRequired
 };
 
 function mapStateToProps(state) {
   return {
-    combatants: state.battleScreen.combatants
+    combatants: state.battleScreen.combatants,
+    currentTurn: state.battleScreen.currentTurn
   };
 }
 

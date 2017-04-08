@@ -1,5 +1,6 @@
 import React from 'react';
 import { ListGroupItem, Badge, ButtonGroup, Button, Tooltip, Input } from 'reactstrap';
+import './Combatant.scss';
 
 class Combatant extends React.Component {
 
@@ -27,10 +28,14 @@ class Combatant extends React.Component {
     });
   }
 
+  getClasses(isCurrentTurn) {
+    return isCurrentTurn ? "justify-content-between currentTurn" : "justify-content-between";
+  }
+
   render() {
-    const {combatant} = this.props;
+    const {combatant, isCurrentTurn} = this.props;
     return (
-      <ListGroupItem className="justify-content-between">
+      <ListGroupItem className={this.getClasses(isCurrentTurn)}>
         <Badge pill id={"initiativeBadge"+combatant.id}>{combatant.initiative}</Badge>
         <Tooltip placement="right" isOpen={this.state.tooltipOpen} autohide={false} target={"initiativeBadge"+combatant.id} toggle={this.toggle}>
           <Input
@@ -52,6 +57,7 @@ class Combatant extends React.Component {
 
 Combatant.propTypes = {
   combatant     : React.PropTypes.object.isRequired,
+  isCurrentTurn : React.PropTypes.bool,
   actions   : React.PropTypes.object.isRequired
 };
 

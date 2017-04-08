@@ -10,7 +10,8 @@ describe('<BattleScreen />', () => {
       addCombatant: () => { }
     };
     const combatants = [];
-    const wrapper = shallow(<BattleScreen actions={actions} combatants={combatants}/>);
+    const currentTurn = 50;
+    const wrapper = shallow(<BattleScreen actions={actions} combatants={combatants} currentTurn={currentTurn} />);
 
     expect(wrapper.find(InitiativePanel).length).toEqual(1);
   });
