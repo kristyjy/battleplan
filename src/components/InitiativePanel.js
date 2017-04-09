@@ -2,6 +2,7 @@ import React from 'react';
 import { ListGroup, Button, ButtonGroup } from 'reactstrap';
 import Combatant from './Combatant';
 import {getHighestInitiative, getNextInOrder, getPreviousInOrder} from '../utils/turnOrderHelper';
+import './InitiativePanel.scss';
 
 class InitiativePanel extends React.Component {
 
@@ -35,9 +36,10 @@ class InitiativePanel extends React.Component {
   renderControls() {
     if (this.state.combatStarted) {
       return (
-        <ButtonGroup>
-          <Button onClick={() => { this.retractTurnOrder(); }}>Previous Turn</Button>
-          <Button onClick={() => { this.advanceTurnOrder(); }}>Next Turn</Button>
+        <ButtonGroup className="turn-order justify-content-between">
+          <Button onClick={() => { this.retractTurnOrder(); }}>&lt;</Button>
+          <h2 className="turn-order-heading">Turn Order</h2>
+          <Button onClick={() => { this.advanceTurnOrder(); }}>&gt;</Button>
         </ButtonGroup>
       );
     } else {
@@ -60,7 +62,7 @@ class InitiativePanel extends React.Component {
   }
 
   retractTurnOrder() {
-    this.props.actions.updateCurrentTurn(getPreviousInOrder(this.props.combatants));
+    this.props.actions.updateCurrentTurn(getPreviousInOrder(this.props.combatants, this.props.currentTurn));
     this.sortCombatants();
   }
 
@@ -68,10 +70,10 @@ class InitiativePanel extends React.Component {
     const {combatants, currentTurn} = this.props;
     return (
       <div className="initiative-panel col-md-5">
+        {this.renderControls()}
         <ListGroup>
           {this.renderCombatants(combatants, currentTurn)}
         </ListGroup>
-        {this.renderControls()}
       </div>
     );
   }

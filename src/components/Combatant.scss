@@ -1,4 +1,33 @@
 // Using two selectors to fix this being overwritten by bootstrap
-.initiative-panel .currentTurn {
-  background-color: #EEE;
+.initiative-panel {
+  .currentTurn {
+    background-color: #eee;
+    font-weight: bold;
+  }
+
+  .combatant-ko {
+    background-color: #ffedd3;
+  }
+
+  .combatant-dead {
+    background-color: #ffdbdb;
+  }
+
+  .ko-toggle-on {
+    background-color: orange;
+    color: #fff;
+    &:hover {
+      background-color: orange;
+      color: #fff;
+    }
+  }
+
+  .dead-toggle-on {
+    background-color: red;
+    color: #fff;
+    &:hover {
+      background-color: red;
+      color: #fff;
+    }
+  }
 }

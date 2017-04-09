@@ -33,7 +33,9 @@ class AddCombatantForm extends React.Component {
 
       this.props.actions.addCombatant({
         'name': this.state.combatantName,
-        'initiative': combatantInitiative
+        'initiative': combatantInitiative,
+        'isKO': false,
+        'isDead': false
       });
       this.props.actions.sortCombatants();
     }
