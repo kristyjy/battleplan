@@ -1,1 +1,21 @@
 @import '~bootstrap/dist/css/bootstrap.css';
+
+.battle-screen {
+  margin: 0;
+}
+
+.monster-manual-list {
+  max-height: calc(100vh - 150px);
+  min-height: 400px;
+  overflow: scroll;
+}
+
+hr {
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+}
+
+.card-text {
+  font-size: .8rem;
+  margin-bottom: .2rem;
+}

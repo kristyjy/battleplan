@@ -16,6 +16,7 @@ export const BattleScreen = (props) => {
       <MainPanel
         combatants={props.combatants}
         actions={props.actions}
+        currentTurn={props.currentTurn}
         />
     </div>
   );
