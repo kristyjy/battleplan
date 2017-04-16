@@ -1,0 +1,36 @@
+.monster-manual-list {
+  max-height: calc(100vh - 150px);
+  min-height: 400px;
+  overflow: scroll;
+
+  .monster-manual-list__item {
+    border-radius: 0 !important;
+  }
+
+  .monster-manual-list__item--open {
+    background-color: #eee;
+  }
+
+  .npc-stat-block {
+    border-radius: 0;
+    background-color: #fbfbfb;
+  }
+
+  .stats {
+    font-size: 12px;
+    text-align: center;
+    margin: 0;
+    td,th {
+      border: none;
+    }
+  }
+
+  .stats-title {
+    text-align: center;
+  }
+}
+
+.card-text {
+  font-size: .8rem;
+  margin-bottom: .2rem;
+}

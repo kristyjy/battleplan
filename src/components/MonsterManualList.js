@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { ListGroup } from 'reactstrap';
 import MonsterManualItem from './MonsterManualItem';
 import monsters from '../data/monsters';
+import './MonsterManual.scss';
 
 class MonsterManualList extends React.Component {
 
