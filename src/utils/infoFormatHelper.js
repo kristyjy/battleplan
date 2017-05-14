@@ -17,6 +17,7 @@ export function getFormatedAbilityModFromAbilityScore(abilityScore) {
   return mod > 0 ? '+'+mod : mod;
 }
 
+// TODO: Replace all functions below with components.. why did I do it this way?
 export function getAbilityScoreTable(item) {
   return (
     <Table size="sm" className="stats">
@@ -48,5 +49,19 @@ export function getInfoItem(name, item) {
   if (item === '') return null;
   return (
     <CardText><strong>{name}</strong> {item}</CardText>
+  );
+}
+
+export function getActionsHeading(title, items) {
+  if (!items) return null;
+  return (
+    <h5 className="actions-title">{title}</h5>
+  );
+}
+
+export function getActions(items) {
+  if (!items) return null;
+  return items.map((item, k) =>
+      <CardText key={k}><strong><i>{item.name}</i></strong> {item.desc}</CardText>
   );
 }

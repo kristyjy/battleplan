@@ -1,5 +1,5 @@
 .monster-manual-list {
-  max-height: calc(100vh - 150px);
+  max-height: calc(100vh - 190px);
   min-height: 400px;
   overflow: scroll;
 
@@ -33,4 +33,10 @@
 .card-text {
   font-size: .8rem;
   margin-bottom: .2rem;
+}
+
+.actions-title {
+  margin: 6px 0;
+  padding-bottom: 2px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }

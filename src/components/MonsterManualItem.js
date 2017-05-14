@@ -10,10 +10,22 @@ class MonsterManualItem extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = { collapse: false };
+
+    this.addToInitiative = this.addToInitiative.bind(this);
   }
 
   toggle() {
     this.setState({ collapse: !this.state.collapse });
+  }
+
+  addToInitiative(item) {
+    this.props.actions.addCombatant({
+      ...item,
+      'initiative': 0,
+      'isKO': false,
+      'isDead': false
+    });
+    this.props.actions.sortCombatants();
   }
 
   render() {
@@ -25,7 +37,11 @@ class MonsterManualItem extends React.Component {
     });
     return (
       <div>
-      <ListGroupItem className={listItemClasses} onClick={() => { this.toggle(); }}>{item.name} <Button size="sm">Add NPC</Button></ListGroupItem>
+      <ListGroupItem className={listItemClasses} >
+        <Button size="sm" onClick={() => { this.toggle(); }}>Details</Button>
+        {item.name}
+        <Button size="sm" onClick={() => { this.addToInitiative(item); }}>+</Button>
+      </ListGroupItem>
       <Collapse isOpen={this.state.collapse}>
         <NPCStatBlock item={item} />
       </Collapse>
@@ -35,7 +51,8 @@ class MonsterManualItem extends React.Component {
 }
 
 MonsterManualItem.propTypes = {
-  item     : React.PropTypes.object.isRequired
+  item     : React.PropTypes.object.isRequired,
+  actions  : React.PropTypes.object.isRequired
 };
 
 export default MonsterManualItem;

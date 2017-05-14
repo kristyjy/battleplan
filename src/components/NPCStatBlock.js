@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardBlock, CardTitle, CardSubtitle, CardText } from 'reactstrap';
-import {getTypeString, getAbilityScoreTable, getInfoItem} from '../utils/infoFormatHelper';
+import {getTypeString, getAbilityScoreTable, getInfoItem, getActions, getActionsHeading} from '../utils/infoFormatHelper';
 
 class NPCStatBlock extends React.Component {
 
@@ -25,6 +25,14 @@ class NPCStatBlock extends React.Component {
           {getInfoItem('Senses', item.senses)}
           {getInfoItem('Languages', item.languages)}
           {getInfoItem('Challenge', item.challenge_rating)}
+          <hr />
+          {getActions(item.special_abilities)}
+          {getActionsHeading('Actions', item.actions)}
+          {getActions(item.actions)}
+          {getActionsHeading('Legendary Actions', item.legendary_actions)}
+          {getActions(item.legendary_actions)}
+          {getActionsHeading('Reactions', item.reactions)}
+          {getActions(item.reactions)}
         </CardBlock>
       </Card>
     );
