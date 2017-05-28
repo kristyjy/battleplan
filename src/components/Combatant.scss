@@ -1,7 +1,7 @@
 // Using two selectors to fix this being overwritten by bootstrap
 .initiative-panel {
   .currentTurn {
-    background-color: #eee;
+    background-color: #ddd;
     font-weight: bold;
   }
 
@@ -29,5 +29,10 @@
       background-color: red;
       color: #fff;
     }
+  }
+
+  .combatant-hp-bar {
+    width: 100%;
+    margin: 4px 0;
   }
 }

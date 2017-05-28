@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListGroupItem, Badge, ButtonGroup, Button, Tooltip, Input } from 'reactstrap';
+import { ListGroupItem, Badge, ButtonGroup, Button, Tooltip, Input, Progress, Popover, PopoverTitle, PopoverContent } from 'reactstrap';
 import './Combatant.scss';
 import classNames from 'classnames';
 
@@ -9,11 +9,16 @@ class Combatant extends React.Component {
     super(props, context);
 
     this.updateInitiative = this.updateInitiative.bind(this);
+    this.updateHP = this.updateHP.bind(this);
     this.toggleIsKO = this.toggleIsKO.bind(this);
     this.toggleIsDead = this.toggleIsDead.bind(this);
     this.toggle = this.toggle.bind(this);
+    this.toggleHpForm = this.toggleHpForm.bind(this);
+    this.handleChangeDamage = this.handleChangeDamage.bind(this);
     this.state = {
-      tooltipOpen: false
+      tooltipOpen: false,
+      hpFormOpen: false,
+      damage: -4
     };
   }
 
@@ -26,6 +31,30 @@ class Combatant extends React.Component {
       this.props.actions.updateCombatant(updatedCombatant);
       this.props.actions.sortCombatants();
     }
+  }
+
+  handleChangeDamage(e) {
+    this.setState({
+      damage: e.target.value
+    });
+  }
+
+  updateHP() {
+    let newHP = this.props.combatant.current_hp + parseInt(this.state.damage);
+    if (newHP > this.props.combatant.hit_points) {
+      newHP = this.props.combatant.hit_points;
+    }
+    else if (newHP < 0) {
+      newHP = 0;
+    }
+    const updatedCombatant = {
+      ...this.props.combatant,
+      'current_hp': newHP,
+      'isDead': newHP <= 0 ? true : false
+    };
+    console.log(updatedCombatant);
+    this.props.actions.updateCombatant(updatedCombatant);
+    this.props.actions.sortCombatants();
   }
 
   toggleIsKO() {
@@ -52,6 +81,59 @@ class Combatant extends React.Component {
     this.setState({
       tooltipOpen: !this.state.tooltipOpen,
     });
+  }
+
+  toggleHpForm() {
+    this.setState({
+      hpFormOpen: !this.state.hpFormOpen,
+    });
+  }
+
+  renderCombatantControls(combatant, koBtnClasses, deadBtnClasses) {
+    if (combatant.creature_type === 'npc') {
+      return (
+        <div className="combatantHp">
+          {combatant.current_hp}/{combatant.hit_points}
+        </div>
+      );
+    }
+    else {
+      return (
+        <ButtonGroup size="sm">
+          <Button
+            className={koBtnClasses}
+            onClick={() => { this.toggleIsKO(); }}>KO</Button>
+          <Button
+            className={deadBtnClasses}
+            onClick={() => { this.toggleIsDead(); }}>Dead</Button>
+        </ButtonGroup>
+      );
+    }
+  }
+
+  renderHpBar(type, current, total, id) {
+    if (type === 'npc') {
+      let percent = (current / total) * 100;
+      return (
+        <div className="combatant-hp-bar">
+          <Progress id={"hp_form_"+id} onClick={() => { this.toggleHpForm(); }} value={percent} />
+          <Popover placement="bottom" isOpen={this.state.hpFormOpen} target={"hp_form_"+id} toggle={this.toggleHpForm}>
+            <PopoverTitle>Update HP</PopoverTitle>
+            <PopoverContent>
+              <Input
+                type="number"
+                name={"damage"+id}
+                id={"damage"+id}
+                defaultValue={this.state.damage}
+                onChange={this.handleChangeDamage} />
+                <Button
+                  onClick={() => { this.updateHP(); }}>Submit</Button>
+            </PopoverContent>
+          </Popover>
+        </div>
+      );
+    }
+    return null;
   }
 
   render() {
@@ -87,14 +169,8 @@ class Combatant extends React.Component {
             onChange={this.updateInitiative}/>
         </Tooltip>
         {combatant.name}
-        <ButtonGroup size="sm">
-          <Button
-            className={koBtnClasses}
-            onClick={() => { this.toggleIsKO(); }}>KO</Button>
-          <Button
-            className={deadBtnClasses}
-            onClick={() => { this.toggleIsDead(); }}>Dead</Button>
-        </ButtonGroup>
+        {this.renderCombatantControls(combatant, koBtnClasses, deadBtnClasses)}
+        {this.renderHpBar(combatant.creature_type, combatant.current_hp, combatant.hit_points, combatant.id)}
       </ListGroupItem>
     );
   }

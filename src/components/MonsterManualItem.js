@@ -21,9 +21,9 @@ class MonsterManualItem extends React.Component {
   addToInitiative(item) {
     this.props.actions.addCombatant({
       ...item,
-      'initiative': 0,
-      'isKO': false,
-      'isDead': false
+      'creature_type': 'npc',
+      'current_hp': item.hit_points,
+      'initiative': 0
     });
     this.props.actions.sortCombatants();
   }

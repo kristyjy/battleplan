@@ -35,7 +35,8 @@ class AddCombatantForm extends React.Component {
         'name': this.state.combatantName,
         'initiative': combatantInitiative,
         'isKO': false,
-        'isDead': false
+        'isDead': false,
+        'creature_type': 'pc',
       });
       this.props.actions.sortCombatants();
     }
@@ -51,7 +52,7 @@ class AddCombatantForm extends React.Component {
             <Input type="text" name="name" id="name" placeholder="Grog Strongjaw" onChange={this.handleChangeName} />
           </FormGroup>
           <FormGroup>
-            <Label for="name">Initiative</Label>
+            <Label for="initiative">Initiative</Label>
             <Input type="number" name="initiative" id="initiative" placeholder="20" onChange={this.handleChangeInitiative}/>
           </FormGroup>
           <Button onClick={() => { this.handleSubmit(); }}>Add Combatant</Button>
