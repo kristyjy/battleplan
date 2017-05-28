@@ -52,7 +52,6 @@ class Combatant extends React.Component {
       'current_hp': newHP,
       'isDead': newHP <= 0 ? true : false
     };
-    console.log(updatedCombatant);
     this.props.actions.updateCombatant(updatedCombatant);
     this.props.actions.sortCombatants();
   }
