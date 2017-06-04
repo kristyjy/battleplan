@@ -2,6 +2,8 @@ import React from 'react';
 import { ListGroup, Button, ButtonGroup } from 'reactstrap';
 import Combatant from './Combatant';
 import {getHighestInitiative, getNextInOrder, getPreviousInOrder} from '../utils/turnOrderHelper';
+import * as roll from '../utils/diceHelper';
+import {getModifierFromAbilityScore} from '../utils/infoFormatHelper';
 import './InitiativePanel.scss';
 
 class InitiativePanel extends React.Component {
@@ -44,7 +46,10 @@ class InitiativePanel extends React.Component {
       );
     } else {
       return (
-        <Button onClick={() => { this.startCombat(); }}>Start Combat</Button>
+        <ButtonGroup>
+          <Button onClick={() => { this.startCombat(); }}>Start Combat</Button>
+          <Button onClick={() => { this.rollInitiative(); }}>Roll Initiative For NPCs</Button>
+        </ButtonGroup>
       );
     }
   }
@@ -54,6 +59,18 @@ class InitiativePanel extends React.Component {
       combatStarted: true
     });
     this.props.actions.updateCurrentTurn(getHighestInitiative(this.props.combatants));
+  }
+
+  rollInitiative() {
+    for (var i=0; i < this.props.combatants.length; i++) {
+      const updatedCombatant = {
+        ...this.props.combatants[i],
+        'initiative': roll.d20(1) + getModifierFromAbilityScore(this.props.combatants[i].dexterity)
+      };
+      this.props.actions.updateCombatant(updatedCombatant);
+    }
+    //roll.rollDiceFromString('2d6 + 5d8');
+    this.sortCombatants();
   }
 
   advanceTurnOrder() {
